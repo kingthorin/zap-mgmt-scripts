@@ -1,0 +1,21 @@
+# Eclipse
+# -------
+*.project
+*.settings
+
+# IDEA
+# ----
+.idea
+.shelf
+/*.iml
+/*.ipr
+/*.iws
+
+# NetBeans
+# --------
+.nb-gradle
+.nb-gradle-properties
+
+# Workflows & scans
+# ------------------
+*/output
