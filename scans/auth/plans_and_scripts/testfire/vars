@@ -1,0 +1,4 @@
+export ZURL="http://testfire.net"
+export ZLOGIN="http://testfire.net/login.jsp"
+export ZUSER="jsmith"
+export ZPASS="demo1234"

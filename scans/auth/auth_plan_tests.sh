@@ -23,6 +23,10 @@ do
         echo
         cd "$TARGET"
         echo "$TARGET:"|tee -a "$OUTPUT" > /dev/null
+        if [ -f vars ]
+        then
+            source vars
+        fi
         for file in *.yaml
         do
             echo "Target: $TARGET Plan: $file"

@@ -2,13 +2,13 @@ env:
   contexts:
   - name: Authentication Test
     urls:
-    - http://testfire.net
+    - ${ZURL}
     includePaths:
-    - https?://testfire.net.*
+    - ${ZURL}.*
     authentication:
       method: browser
       parameters:
-        loginPageUrl: http://testfire.net/login.jsp
+        loginPageUrl: ${ZLOGIN}
         loginPageWait: 2
         browserId: firefox-headless
       verification:
@@ -16,17 +16,17 @@ env:
     sessionManagement:
       method: autodetect
     users:
-    - name: jsmith
+    - name: testuser
       credentials:
-        password: demo1234
-        username: jsmith
+        password: ${ZPASS}
+        username: ${ZUSER}
 jobs:
 - type: requestor
   parameters:
-    user: jsmith
+    user: testuser
   requests:
   - name: Get Account Details
-    url: 'http://testfire.net/bank/showAccount?listAccounts=800002'
+    url: ${ZURL}/bank/showAccount?listAccounts=800002
     method: GET
     responseCode: 200
 
