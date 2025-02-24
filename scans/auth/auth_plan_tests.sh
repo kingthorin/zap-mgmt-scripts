@@ -60,6 +60,8 @@ runplan()
 getreportdetails()
 {
     AUTHREPORT=$1
+    SITE=`jq -r '.site' $AUTHREPORT`
+    echo "$INDENT$INDENT"site: $SITE|tee -a "$OUTPUT" > /dev/null
     USER_SUCCESS=`jq -r '.summaryItems[] | select(.key == "auth.summary.username") | .passed' $AUTHREPORT`
     echo "$INDENT$INDENT"username: $USER_SUCCESS|tee -a "$OUTPUT" > /dev/null
     PASS_SUCCESS=`jq -r '.summaryItems[] | select(.key == "auth.summary.password") | .passed' $AUTHREPORT`
