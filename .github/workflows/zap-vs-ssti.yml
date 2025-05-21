@@ -59,12 +59,10 @@ jobs:
         git update-index -q --refresh
         ## If there are changes: comment, commit, PR
         if ! git diff-index --quiet HEAD --; then
-
+          gh repo set-default zaproxy/zaproxy-website
+          git remote set-url origin https://$GITHUB_USER:$GITHUB_TOKEN@github.com/$GITHUB_USER/zaproxy-website.git
           git add site/data/scans/ssti/*
-          git commit -s -m "Updated Vuln to SSTI Results"
-          git push origin
-
-          echo ${{ secrets.ZAPBOT_TOKEN }} | gh auth login --with-token
-          gh pr create --fill
-
+          git commit -sm "Updated Vuln to SSTI Results"
+          git push -u origin $BRANCH -f
+          gh pr view --json mergedAt|jq -e '.mergedAt' && gh pr create --fill
         fi
